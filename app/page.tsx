@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className='mx-5'>
       <NavBar/>
      
      <div className='place-items-center mt-10'>
@@ -63,6 +63,7 @@ export default function Home() {
             placeholder="Recipient Address"
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
+            className='border-2 border-blue-600 outline-0 p-1 rounded mt-2'
           />
           <button
             onClick={() => sendTip(userSession, recipient)}
