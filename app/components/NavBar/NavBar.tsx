@@ -9,7 +9,7 @@ export default function Page() {
 
     return (
         <div className="flex justify-center mt-10">
-            <nav className=" flex justify-between gap-50 lg:gap-96">
+            <nav className=" flex justify-between gap-50 ">
                 <div>
                     <h1>TIPJAR</h1>
                 </div>
@@ -24,7 +24,7 @@ export default function Page() {
                 </div>
                 <div>
                     <button
-                        className="md:hidden p-2 rounded bg-blue-600"
+                        className="md:hidden p-2 rounded bg-blue-600 cursor-pointer"
                         onClick={toggleMenu}
                     >
                         {isOpen ? 'Close' : 'Menu'}
