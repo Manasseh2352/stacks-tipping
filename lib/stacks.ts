@@ -2,14 +2,16 @@ import {
     openContractCall,
     standardPrincipalCV,
   } from '@stacks/transactions';
-  import { StacksTestnet } from '@stacks/network';
+  import { StacksNetwork } from '@stacks/network';
   import { UserSession } from '@stacks/connect';
   
-  const CONTRACT_ADDRESS = 'YOUR_DEPLOYED_CONTRACT_ADDRESS';
+  const CONTRACT_ADDRESS = 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5'; // Replace with your actual contract address
   const CONTRACT_NAME = 'tip-contract';
   
   export async function sendTip(userSession: UserSession, recipient: string) {
-    const network = new StacksTestnet();
+    const network = new StacksNetwork({
+      url: 'https://stacks-node-api.testnet.stacks.co', // Explicitly set the testnet URL
+    });
   
     const options = {
       contractAddress: CONTRACT_ADDRESS,
@@ -27,6 +29,9 @@ import {
       },
     };
   
-    await openContractCall(options);
+    try {
+      await openContractCall(options);
+    } catch (error) {
+      console.error('Error sending tip:', error);
+    }
   }
-  

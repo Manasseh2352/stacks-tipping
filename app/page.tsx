@@ -1,11 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
+import NavBar from './components/NavBar/NavBar'
 import {
   AppConfig,
   UserSession,
   showConnect,
 } from '@stacks/connect';
 import { sendTip } from '@/lib/stacks';
+import Image from 'next/image';
 
 const appConfig = new AppConfig(['store_write']);
 const userSession = new UserSession({ appConfig });
@@ -34,10 +36,25 @@ export default function Home() {
   }, []);
 
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>STX Tipping Platform</h1>
+    <main>
+      <NavBar/>
+     
+     <div className='place-items-center mt-10'>
+      <Image 
+      src='/img/tip-jar.png'
+      alt='Tip Jar'
+      width={200}
+      height={200}
+      className='mx-auto mb-5'
+      priority
+      />
+     <div className=' text-center'>
+     <h1 className='font-extrabold text-3xl'>TipJar</h1>
+     <p className=''>A fun competitive way to tip your favourite creators and support the community</p>
       {!userData ? (
-        <button onClick={connectWallet}>Connect Wallet</button>
+        <button onClick={connectWallet}
+        className='ml-5 bg-blue-500 p-1 rounded'
+        >Connect Wallet</button>
       ) : (
         <>
           <p>Your Address: {userData.profile.stxAddress.testnet}</p>
@@ -50,12 +67,14 @@ export default function Home() {
           <button
             onClick={() => sendTip(userSession, recipient)}
             disabled={!recipient}
-            style={{ marginLeft: '10px' }}
+            className='ml-5 bg-blue-500 p-1 rounded'
           >
             Send 1 STX Tip
           </button>
         </>
       )}
+     </div>
+     </div>
     </main>
   );
 }
